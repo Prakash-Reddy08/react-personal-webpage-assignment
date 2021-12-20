@@ -1,40 +1,42 @@
 import styled from "styled-components"
-import { data } from "../tempData";
 import { IoLocationSharp, IoMailSharp } from 'react-icons/io5'
+// import { data } from '../tempData'
 import { FaGraduationCap } from 'react-icons/fa'
-const Card = () => {
-    const userExperience = data[0].user_experiences[2];
-    const userQualifications = data[0].user_qualifications[0];
+import Share from "./Share";
+const Card = ({ data }) => {
+    console.log(data);
+    const userExperience = data[0]?.user_experiences[2];
+    const userQualifications = data[0]?.user_qualifications[0];
     return (
         <Wrapper>
             <div className="img">
-                <img src={`${data[0].user_image_url}`} alt="d" />
+                <img src={`${data[0]?.user_image_url}`} alt="d" />
             </div>
             <div className="info">
                 <div className="name_location">
-                    <h3 className="user_name">{data[0].jobseeker_name}</h3>
+                    <h3 className="user_name">{data[0]?.jobseeker_name}</h3>
                     <div className="location">
                         <IoLocationSharp className="lo_icon" />
-                        <p className="location_info">{data[0].area}, {data[0].city}</p>
+                        <p className="location_info">{data[0]?.area}, {data[0]?.city}</p>
                     </div>
                 </div>
                 <div className="experience">
                     <div className="head">
                         <IoMailSharp className="lo_icon" />
                         <h4>EXPERIENCE</h4>
-                        <p className='exp'>{Math.floor(data[0].total_months_exp / 12) > 0 ? `${Math.floor(data[0].total_months_exp / 12)} yr Exp` : `${data[0].total_months_exp} mons Exp`}</p>
+                        <p className='exp'>{Math.floor(data[0]?.total_months_exp / 12) > 0 ? `${Math.floor(data[0]?.total_months_exp / 12)} yr Exp` : `${data[0].total_months_exp} mons Exp`}</p>
                     </div>
                     <div className="content">
                         <div className="company_logo">
-                            <img src={userExperience.company_logo} alt="" />
+                            <img src={userExperience?.company_logo} alt="" />
                         </div>
                         <div className="company_info">
                             <h3>Fitter</h3>
-                            <h4>{userExperience.company_name.replace(` : ${userExperience.company_location}`, "")}</h4>
-                            <p className="duration">{userExperience.company_starting_date} - {userExperience.company_ending_date}</p>
+                            <h4>{userExperience?.company_name.replace(` : ${userExperience?.company_location}`, "")}</h4>
+                            <p className="duration">{userExperience?.company_starting_date} - {userExperience?.company_ending_date}</p>
                             <div className="desc">
                                 <p className="desc">
-                                    {userExperience.role_discription}
+                                    {userExperience?.role_discription}
                                 </p>
                             </div>
                         </div>
@@ -44,9 +46,12 @@ const Card = () => {
                         <h4>Education</h4>
                     </div>
                     <div className="edu_desc">
-                        <h4>{userQualifications.course_type}&#8212;{userQualifications.course_name}</h4>
-                        <p className="duration">{userQualifications.user_college.split(' :')[0]} | {userQualifications.user_passing_year}</p>
+                        <h4>{userQualifications?.course_type}&#8212;{userQualifications?.course_name}</h4>
+                        <p className="duration">{userQualifications?.user_college.split(' :')[0]} | {userQualifications?.user_passing_year}</p>
                     </div>
+                </div>
+                <div className="share">
+                    <Share />
                 </div>
             </div>
         </Wrapper>
@@ -170,6 +175,11 @@ const Wrapper = styled.div`
                 font-size: 19px;
             }
         }
+    }
+    .share{
+        position: absolute;
+        left: 50%;
+        bottom: 4%;
     }
 `
 
