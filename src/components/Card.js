@@ -1,8 +1,10 @@
 import styled from "styled-components"
 import { data } from "../tempData";
 import { IoLocationSharp, IoMailSharp } from 'react-icons/io5'
+import { FaGraduationCap } from 'react-icons/fa'
 const Card = () => {
-    console.log(data[0].user_image_url);
+    const userExperience = data[0].user_experiences[2];
+    const userQualifications = data[0].user_qualifications[0];
     return (
         <Wrapper>
             <div className="img">
@@ -17,9 +19,34 @@ const Card = () => {
                     </div>
                 </div>
                 <div className="experience">
-                    <IoMailSharp className="lo_icon" />
-                    <h4>EXPERIENCE</h4>
-                    <p className='exp'>{Math.floor(data[0].total_months_exp / 12) > 0 ? `${Math.floor(data[0].total_months_exp / 12)} yr Exp` : `${data[0].total_months_exp} mons Exp`}</p>
+                    <div className="head">
+                        <IoMailSharp className="lo_icon" />
+                        <h4>EXPERIENCE</h4>
+                        <p className='exp'>{Math.floor(data[0].total_months_exp / 12) > 0 ? `${Math.floor(data[0].total_months_exp / 12)} yr Exp` : `${data[0].total_months_exp} mons Exp`}</p>
+                    </div>
+                    <div className="content">
+                        <div className="company_logo">
+                            <img src={userExperience.company_logo} alt="" />
+                        </div>
+                        <div className="company_info">
+                            <h3>Fitter</h3>
+                            <h4>{userExperience.company_name.replace(` : ${userExperience.company_location}`, "")}</h4>
+                            <p className="duration">{userExperience.company_starting_date} - {userExperience.company_ending_date}</p>
+                            <div className="desc">
+                                <p className="desc">
+                                    {userExperience.role_discription}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="bottom">
+                        <FaGraduationCap className="lo_icon" />
+                        <h4>Education</h4>
+                    </div>
+                    <div className="edu_desc">
+                        <h4>{userQualifications.course_type}&#8212;{userQualifications.course_name}</h4>
+                        <p className="duration">{userQualifications.user_college.split(' :')[0]} | {userQualifications.user_passing_year}</p>
+                    </div>
                 </div>
             </div>
         </Wrapper>
@@ -28,7 +55,7 @@ const Card = () => {
 
 const Wrapper = styled.div`
     width: 58.8125rem;
-    height: 31.625rem;
+    /* height: 31.625rem; */
     background-color: #FFFFFF;
     display: flex;
     border-radius: 10px;
@@ -43,11 +70,11 @@ const Wrapper = styled.div`
         padding-right: 4px;
     }
     .info{
-        padding: 70px 35px;
-        .name_location,.experience{
+        width: 100%;
+        padding: 60px 60px 60px 35px;
+        .name_location{
             display: flex;
-            align-items:center;
-            margin:0 0 45px 66px;
+            margin:0 0 45px 30px;
         }
         .user_name{
             font-family: 'Roboto';
@@ -64,6 +91,8 @@ const Wrapper = styled.div`
         padding-left: 10px;
     }
     .experience{
+        display: flex;
+        flex-direction: column;
         h4{
             color:#5BC2A8;
             padding-left:4px;
@@ -75,6 +104,71 @@ const Wrapper = styled.div`
             color:#FFFFFF;
             padding:3px 7px;
             border-radius:5px;
+        }
+        .head,.bottom{
+            display: flex;
+            margin-left: 30px;
+        }
+
+        .content{
+            display: flex;
+            margin-top:16px;
+            margin-left: 0;
+            img{
+                width: 43px;
+                height: 47px;
+            }
+            .company_info{
+                line-height: 1.6;
+                margin-left: 16px;
+                h4,h3{
+                    padding: 0;
+                    color: #232323;
+                }
+                h3{
+                    font-family: 'Roboto';
+                    font-weight: 500;
+                }
+                h4{
+                    font-family: 'Roboto';
+                    font-weight: 500;
+                    font-size: 17px;
+                }
+                .duration{
+                    color: #818181;
+                }
+                .desc{
+                    margin-top: 9px;
+                    line-height: 1.8;
+                    color: #232323;
+                }
+            }
+        }
+        .bottom{
+            margin-top: 22px;
+            
+            .lo_icon{
+                width: 21px;
+                height: 19px;
+            }
+            h4{
+                font-family: 'Roboto';
+                font-weight: 500;
+                font-size: 17px;
+            }
+        }
+        .edu_desc{
+            display: flex;
+            margin-top: 16px;
+            flex-direction: column;
+            margin-left: 56px;
+            line-height: 1.8;
+            h4{
+                padding: 0;
+                color: #232323;
+                font-weight: 500;
+                font-size: 19px;
+            }
         }
     }
 `

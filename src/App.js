@@ -32,7 +32,6 @@ const Wrapper = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-wrap: nowrap;
   }
 `
 
