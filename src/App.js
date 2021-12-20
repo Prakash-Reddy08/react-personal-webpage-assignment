@@ -47,14 +47,15 @@ function App() {
 }
 
 const Wrapper = styled.div`
+  height: 100vh;
   background-image: url(${background});
   .page{
-    height: 100vh;
+    overflow-y: scroll;
+    height: 100%;
   }
   .body{
     height: 100%;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
   }

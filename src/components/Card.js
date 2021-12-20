@@ -9,50 +9,53 @@ const Card = ({ data }) => {
     const userQualifications = data[0]?.user_qualifications[0];
     return (
         <Wrapper>
-            <div className="img">
-                <img src={`${data[0]?.user_image_url}`} alt="d" />
-            </div>
-            <div className="info">
-                <div className="name_location">
-                    <h3 className="user_name">{data[0]?.jobseeker_name}</h3>
-                    <div className="location">
-                        <IoLocationSharp className="lo_icon" />
-                        <p className="location_info">{data[0]?.area}, {data[0]?.city}</p>
-                    </div>
+            <div className="total">
+
+                <div className="img">
+                    <img src={`${data[0]?.user_image_url}`} alt="d" />
                 </div>
-                <div className="experience">
-                    <div className="head">
-                        <IoMailSharp className="lo_icon" />
-                        <h4>EXPERIENCE</h4>
-                        <p className='exp'>{Math.floor(data[0]?.total_months_exp / 12) > 0 ? `${Math.floor(data[0]?.total_months_exp / 12)} yr Exp` : `${data[0].total_months_exp} mons Exp`}</p>
-                    </div>
-                    <div className="content">
-                        <div className="company_logo">
-                            <img src={userExperience?.company_logo} alt="" />
+                <div className="info">
+                    <div className="name_location">
+                        <h3 className="user_name">{data[0]?.jobseeker_name}</h3>
+                        <div className="location">
+                            <IoLocationSharp className="lo_icon" />
+                            <p className="location_info">{data[0]?.area}, {data[0]?.city}</p>
                         </div>
-                        <div className="company_info">
-                            <h3>Fitter</h3>
-                            <h4>{userExperience?.company_name.replace(` : ${userExperience?.company_location}`, "")}</h4>
-                            <p className="duration">{userExperience?.company_starting_date} - {userExperience?.company_ending_date}</p>
-                            <div className="desc">
-                                <p className="desc">
-                                    {userExperience?.role_discription}
-                                </p>
+                    </div>
+                    <div className="experience">
+                        <div className="head">
+                            <IoMailSharp className="lo_icon" />
+                            <h4>EXPERIENCE</h4>
+                            <p className='exp'>{Math.floor(data[0]?.total_months_exp / 12) > 0 ? `${Math.floor(data[0]?.total_months_exp / 12)} yr Exp` : `${data[0].total_months_exp} mons Exp`}</p>
+                        </div>
+                        <div className="content">
+                            <div className="company_logo">
+                                <img className="compan_img" src={userExperience?.company_logo} alt="" />
+                            </div>
+                            <div className="company_info">
+                                <h3>Fitter</h3>
+                                <h4>{userExperience?.company_name.replace(` : ${userExperience?.company_location}`, "")}</h4>
+                                <p className="duration">{userExperience?.company_starting_date} - {userExperience?.company_ending_date}</p>
+                                <div className="desc">
+                                    <p className="desc">
+                                        {userExperience?.role_discription}
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="bottom">
-                        <FaGraduationCap className="lo_icon" />
-                        <h4>Education</h4>
-                    </div>
-                    <div className="edu_desc">
-                        <h4>{userQualifications?.course_type}&#8212;{userQualifications?.course_name}</h4>
-                        <p className="duration">{userQualifications?.user_college.split(' :')[0]} | {userQualifications?.user_passing_year}</p>
+                        <div className="bottom">
+                            <FaGraduationCap className="lo_icon" />
+                            <h4>Education</h4>
+                        </div>
+                        <div className="edu_desc">
+                            <h4>{userQualifications?.course_type}&#8212;{userQualifications?.course_name}</h4>
+                            <p className="duration">{userQualifications?.user_college.split(' :')[0]} | {userQualifications?.user_passing_year}</p>
+                        </div>
                     </div>
                 </div>
-                <div className="share">
-                    <Share />
-                </div>
+            </div>
+            <div className="share">
+                <Share />
             </div>
         </Wrapper>
     )
@@ -62,13 +65,22 @@ const Wrapper = styled.div`
     width: 58.8125rem;
     /* height: 31.625rem; */
     background-color: #FFFFFF;
+    position: relative;
     display: flex;
+    flex-direction: column;
     border-radius: 10px;
-    overflow: hidden;
+    
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.24);
-    img{ 
-          width: 370px;
+    .total{
+        display: flex;
+        flex-direction: row;
+        /* overflow: hidden; */
+    }
+   img{
+             width: 370px;
           height: 100%;
+          border-top-left-radius: 10px;
+          border-bottom-left-radius: 10px;
     }
     .lo_icon{
         color: #14967B;
@@ -119,7 +131,8 @@ const Wrapper = styled.div`
             display: flex;
             margin-top:16px;
             margin-left: 0;
-            img{
+            .compan_img{
+                border-radius: 0;
                 width: 43px;
                 height: 47px;
             }
@@ -176,10 +189,12 @@ const Wrapper = styled.div`
             }
         }
     }
-    .share{
+    .share {
         position: absolute;
-        left: 50%;
-        bottom: 4%;
+        background-color: aquamarine;
+        margin: 53%;
+
+
     }
 `
 
