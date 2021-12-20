@@ -1,6 +1,5 @@
 import styled from "styled-components"
 import { IoLocationSharp, IoMailSharp } from 'react-icons/io5'
-// import { data } from '../tempData'
 import { FaGraduationCap } from 'react-icons/fa'
 import Share from "./Share";
 const Card = ({ data }) => {
