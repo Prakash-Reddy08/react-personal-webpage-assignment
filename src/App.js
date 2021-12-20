@@ -14,12 +14,10 @@ function App() {
   const fetchData = async () => {
     await axios.post('https://api.meetworks.in/users/get_unique_jobseeker_profile', { jobseeker_id: "614b410c2c4b197356a37f18" })
       .then((res) => {
-        console.log(res.data);
         setUserData(res.data);
         setIsLoading(false);
       }).catch(err => {
         setIsLoading(false);
-        console.log(err);
       })
   }
 

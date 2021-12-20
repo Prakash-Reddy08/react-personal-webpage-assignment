@@ -4,7 +4,6 @@ import { IoLocationSharp, IoMailSharp } from 'react-icons/io5'
 import { FaGraduationCap } from 'react-icons/fa'
 import Share from "./Share";
 const Card = ({ data }) => {
-    console.log(data);
     const userExperience = data[0]?.user_experiences[2];
     const userQualifications = data[0]?.user_qualifications[0];
     return (
